@@ -4,305 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arash Norouzzadeh - Research Scientist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/theme/white.min.css" id="theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-        .slide { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: #F3F4F6; }
-        .card { @apply bg-white p-8 rounded-2xl shadow-2xl max-w-4xl w-full; }
-        .section-header { @apply text-4xl font-bold text-blue-900 mb-6 tracking-tight flex items-center; }
-        .accent-bg { background: linear-gradient(135deg, #1E3A8A, #3B82F6); }
-        .accent-text { @apply text-gold-500; }
-        .nav-link { @apply text-blue-900 hover:text-gold-500 transition-colors duration-300; }
-        .icon-link { @apply text-blue-900 hover:text-gold-500 transition-colors duration-300; }
-        .sidebar { @apply fixed top-0 left-0 h-full w-16 bg-blue-900 text-white flex flex-col items-center py-6 transition-all duration-300; }
-        .sidebar:hover { width: 200px; }
-        .sidebar:hover .nav-text { opacity: 1; }
-        .nav-text { @apply opacity-0 ml-4 transition-opacity duration-300; }
-        .nav-button { @apply absolute bg-blue-900 text-white p-3 rounded-full shadow-lg hover:bg-gold-500 transition-colors duration-300; }
-        .timeline-item { @apply relative pl-12 pb-10; }
+        body { font-family: 'Inter', sans-serif; }
+        .reveal { font-size: 28px; }
+        .reveal h1, .reveal h2, .reveal h3 { color: #1E3A8A; }
+        .reveal section { background: #FFFFFF; padding: 2rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .reveal .accent-bg { background: linear-gradient(135deg, #1E3A8A, #3B82F6); color: #FFFFFF; }
+        .accent-text { color: #D4AF37; }
+        .icon-link { color: #1E3A8A; }
+        .icon-link:hover { color: #D4AF37; }
+        .reveal ul { list-style-type: disc; padding-left: 1.5rem; }
+        .reveal li { margin-bottom: 0.5rem; }
+        .timeline-item { position: relative; padding-left: 2rem; margin-bottom: 1.5rem; }
         .timeline-item::before {
             content: '';
-            @apply absolute left-2 top-0 h-full w-1 bg-blue-900;
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: #1E3A8A;
         }
         .timeline-item::after {
             content: '\f058';
             font-family: 'Font Awesome 6 Free';
             font-weight: 900;
-            @apply absolute left-[-6px] top-2 text-gold-500 text-lg;
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            color: #D4AF37;
+            font-size: 1rem;
         }
+        .logo { transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.1); }
+        .reveal .controls { color: #D4AF37; }
+        .reveal .progress { background: #D4AF37; }
     </style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar z-50">
-        <img src="logo.png" alt="Logo" class="w-10 h-10 mb-8 hover-scale" onerror="this.src='https://via.placeholder.com/40?text=Logo'">
-        <a href="#hero" class="nav-link py-4 flex items-center"><i class="fas fa-home fa-lg"></i><span class="nav-text">Home</span></a>
-        <a href="#summary" class="nav-link py-4 flex items-center"><i class="fas fa-user fa-lg"></i><span class="nav-text">Summary</span></a>
-        <a href="#expertise" class="nav-link py-4 flex items-center"><i class="fas fa-cogs fa-lg"></i><span class="nav-text">Expertise</span></a>
-        <a href="#experience" class="nav-link py-4 flex items-center"><i class="fas fa-briefcase fa-lg"></i><span class="nav-text">Experience</span></a>
-        <a href="#education" class="nav-link py-4 flex items-center"><i class="fas fa-graduation-cap fa-lg"></i><span class="nav-text">Education</span></a>
-        <a href="#publications" class="nav-link py-4 flex items-center"><i class="fas fa-book fa-lg"></i><span class="nav-text">Publications</span></a>
-        <a href="#awards" class="nav-link py-4 flex items-center"><i class="fas fa-trophy fa-lg"></i><span class="nav-text">Awards</span></a>
-    </nav>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Hero Slide -->
+            <section class="accent-bg">
+                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
+                <h1 class="text-5xl font-bold">Arash Norouzzadeh</h1>
+                <h2 class="text-3xl mt-2">Senior Research Scientist at Bosch Center for AI</h2>
+                <div class="mt-6 flex flex-wrap justify-center gap-4 text-xl">
+                    <a href="tel:+13072236636" class="icon-link"><i class="fas fa-phone mr-2"></i>307-223-6636</a>
+                    <a href="mailto:arash.norouzzadeh@gmail.com" class="icon-link"><i class="fas fa-envelope mr-2"></i>Email</a>
+                    <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
+                    <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github mr-2"></i>GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap mr-2"></i>Google Scholar</a>
+                </div>
+                <img src="profile.jpg" alt="Arash Norouzzadeh" class="w-32 h-32 rounded-full mt-6 object-cover shadow-lg" onerror="this.src='https://via.placeholder.com/128?text=Profile'">
+            </section>
 
-    <!-- Slides -->
-    <!-- Hero Slide -->
-    <section id="hero" class="slide accent-bg text-white">
-        <div class="card text-center">
-            <img src="profile.jpg" alt="Arash Norouzzadeh" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover shadow-lg transform hover:scale-105 transition duration-300" onerror="this.src='https://via.placeholder.com/128?text=Profile'">
-            <h1 class="text-5xl font-extrabold text-blue-900 mb-4">Arash Norouzzadeh</h1>
-            <p class="text-2xl mb-6">Senior Research Scientist at Bosch Center for AI</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="tel:+13072236636" class="icon-link"><i class="fas fa-phone mr-2"></i>307-223-6636</a>
-                <a href="mailto:arash.norouzzadeh@gmail.com" class="icon-link"><i class="fas fa-envelope mr-2"></i>Email</a>
-                <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
-                <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github mr-2"></i>GitHub</a>
-                <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap mr-2"></i>Google Scholar</a>
-            </div>
-        </div>
-    </section>
+            <!-- Summary Slide -->
+            <section>
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-user mr-2 accent-text"></i>Summary</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Results-driven Computer Scientist with over 10 years of experience leading 15+ projects from concept to deployment. Delivered 12+ patented innovations in model optimization, generative AI, and computer vision, with 20+ publications (2500+ citations). Proven leader in mentoring teams and driving R&D, focusing on scalable architectures, MLOps, and low-resource learning. Expert in Python, PyTorch, and distributed systems, translating cutting-edge research into production-grade solutions.
+                </p>
+            </section>
 
-    <!-- Summary Slide -->
-    <section id="summary" class="slide">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-user mr-3 accent-text"></i>Summary</h2>
-            <p class="text-gray-700 leading-relaxed">
-                Results-driven Computer Scientist with over 10 years of experience leading and contributing to 15+ successful projects from concept to deployment. Delivered 12+ patented innovations in model optimization, generative AI, and computer vision, along with 20+ publications receiving 2500+ citations. A proven leader in mentoring teams and driving cross-functional R&D, with a focus on scalable architectures, MLOps pipelines, and low-resource learning. Combines technical mastery (Python, PyTorch, distributed systems) with a strong commitment to translating cutting-edge research into production-grade solutions.
-            </p>
-        </div>
-    </section>
-
-    <!-- Technical Expertise Slide -->
-    <section id="expertise" class="slide accent-bg text-white">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-cogs mr-3 accent-text"></i>Technical Expertise</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Machine Learning & AI</h3>
-                    <ul class="list-disc pl-6 text-gray-700">
-                        <li>Core Architectures: Transformers, CNNs, RNNs, Graph Neural Networks.</li>
+            <!-- Technical Expertise Slide -->
+            <section class="accent-bg">
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-cogs mr-2 accent-text"></i>Technical Expertise</h2>
+                <section>
+                    <h3 class="text-2xl font-semibold mb-2">Machine Learning & AI</h3>
+                    <ul class="text-gray-700">
+                        <li>Architectures: Transformers, CNNs, RNNs, Graph Neural Networks.</li>
                         <li>Generative AI: Diffusion Models, GANs, VAEs, Stable Diffusion, LLMs, Vision-Language Models.</li>
-                        <li>Learning Strategies: Supervised/Unsupervised, DRL, Self-Supervised, Transfer, Active Learning.</li>
+                        <li>Strategies: Supervised/Unsupervised, DRL, Self-Supervised, Transfer, Active Learning.</li>
                         <li>Applications: Computer Vision, NLP, Multi-modal Systems.</li>
-                        <li>Model Development: SVMs, Ensembles, Quantization, Pruning, Distillation, XAI, Adversarial Robustness.</li>
-                        <li>Deployment: Model Serving, ONNX, MLOps, Responsible AI Governance.</li>
+                        <li>Development: SVMs, Ensembles, Quantization, Pruning, Distillation, XAI, Adversarial Robustness.</li>
+                        <li>Deployment: Model Serving, ONNX, MLOps, Responsible AI.</li>
                     </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-3">Software Development & Infrastructure</h3>
-                    <ul class="list-disc pl-6 text-gray-700">
+                </section>
+                <section>
+                    <h3 class="text-2xl font-semibold mb-2">Software Development & Infrastructure</h3>
+                    <ul class="text-gray-700">
                         <li>Languages: Python, Java, C/C++, SQL, Bash, CUDA.</li>
-                        <li>ML Frameworks: PyTorch, TensorFlow, Hugging Face, Scikit-learn, Keras, PyTorch Lightning.</li>
+                        <li>Frameworks: PyTorch, TensorFlow, Hugging Face, Scikit-learn, Keras, PyTorch Lightning.</li>
                         <li>Cloud/DevOps: AWS, Azure, Docker, Kubernetes, CI/CD.</li>
-                        <li>Tools: Git, SVN, Apache Spark, Hadoop, Agile, Algorithm Design.</li>
+                        <li>Tools: Git, SVN, Apache Spark, Hadoop, Agile.</li>
                     </ul>
-                    <h3 class="text-xl font-semibold text-blue-900 mb-3 mt-4">Leadership & Project Execution</h3>
-                    <ul class="list-disc pl-6 text-gray-700">
-                        <li>Technical Leadership: Cross-functional team management, mentoring.</li>
-                        <li>Full-Cycle Delivery: Ideation to deployment, patent preparation.</li>
-                        <li>Operational Excellence: Budgeting, stakeholder alignment, technical writing.</li>
+                </section>
+                <section>
+                    <h3 class="text-2xl font-semibold mb-2">Leadership & Project Execution</h3>
+                    <ul class="text-gray-700">
+                        <li>Leadership: Cross-functional team management, mentoring.</li>
+                        <li>Delivery: Ideation to deployment, patent preparation.</li>
+                        <li>Excellence: Budgeting, stakeholder alignment, technical writing.</li>
                     </ul>
+                </section>
+            </section>
+
+            <!-- Professional Experience Slide -->
+            <section>
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-briefcase mr-2 accent-text"></i>Professional Experience</h2>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Senior ML Research Scientist/Engineer</h3>
+                        <p class="text-gray-500">Bosch Center for AI, Pittsburgh, PA | Aug 2019 - Present</p>
+                        <ul class="text-gray-700">
+                            <li>Built AGI-inspired tools for researcher workflows.</li>
+                            <li>Optimized multi-modal models for scalability.</li>
+                            <li>Developed DevOps tools for distributed training.</li>
+                            <li>Deployed models to edge devices (compression, quantization).</li>
+                            <li>Pioneered neural network compression (4 patents, 1 paper).</li>
+                            <li>Enhanced model robustness (1 patent, 1 paper).</li>
+                            <li>Contributed to vision systems (2 patents).</li>
+                            <li>Researched few-shot learning (3 patents).</li>
+                            <li>Innovated explainable AI (2 patents, 1 paper).</li>
+                            <li>Designed probabilistic programming for analysis.</li>
+                            <li>Developed AI-driven data labeling (2 patents, 1 paper).</li>
+                            <li>Mentored 5+ interns.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Computer Vision Research Intern</h3>
+                        <p class="text-gray-500">Microsoft Research, Redmond, WA | Sep 2018 - Dec 2018</p>
+                        <ul class="text-gray-700">
+                            <li>Developed species identification system, 99.5% fewer samples.</li>
+                            <li>Engineered deep embedding learning.</li>
+                            <li>Published in Methods in Ecology and Evolution (200+ citations).</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Deep Learning Intern</h3>
+                        <p class="text-gray-500">APTIV, Agoura Hills, CA | May 2018 - Aug 2018</p>
+                        <ul class="text-gray-700">
+                            <li>Designed 3D object detection system.</li>
+                            <li>Benchmarked 3D detection architectures.</li>
+                            <li>Developed Python tools for LIDAR processing.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Graduate Assistant</h3>
+                        <p class="text-gray-500">University of Wyoming, Laramie, WY | Jan 2014 - May 2019</p>
+                        <ul class="text-gray-700">
+                            <li>Authored PNAS paper on camera-trap analysis (1,100+ citations).</li>
+                            <li>Designed wild pig detection system (98.6% accuracy).</li>
+                            <li>Automated 50% of labeling workflows.</li>
+                            <li>Evaluated interpretability methods.</li>
+                            <li>Published on neuromodulation (1 paper).</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Senior IT Expert</h3>
+                        <p class="text-gray-500">Mellat Insurance, Tehran, Iran | Apr 2010 - Dec 2013</p>
+                        <ul class="text-gray-700">
+                            <li>Led team to deploy ATM software.</li>
+                            <li>Architected J2EE platform (40% process reduction).</li>
+                            <li>Optimized infrastructure (1,200+ transactions/sec).</li>
+                            <li>Managed Oracle databases (99.9% uptime).</li>
+                            <li>Integrated ATM systems with APIs.</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Java Developer</h3>
+                        <p class="text-gray-500">Douran Data Processing, Tehran, Iran | Mar 2007 - Mar 2010</p>
+                        <ul class="text-gray-700">
+                            <li>Architected Java/J2EE ERP modules.</li>
+                            <li>Developed accounting system (80% labor reduction).</li>
+                            <li>Designed migration strategy (zero data loss).</li>
+                            <li>Mentored developers (30% productivity boost).</li>
+                        </ul>
+                    </div>
+                </section>
+                <section>
+                    <div class="timeline-item">
+                        <h3 class="text-2xl font-semibold">Research Assistant</h3>
+                        <p class="text-gray-500">Isfahan University of Technology, Isfahan, Iran | Jan 2009 - May 2010</p>
+                        <ul class="text-gray-700">
+                            <li>Designed PSO variants (1 conference, 1 journal paper).</li>
+                            <li>Authored paper on stock market prediction.</li>
+                        </ul>
+                    </div>
+                </section>
+            </section>
+
+            <!-- Education Slide -->
+            <section class="accent-bg">
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-graduation-cap mr-2 accent-text"></i>Education</h2>
+                <section>
+                    <h3 class="text-2xl font-semibold">Ph.D. in Computer Science</h3>
+                    <p class="text-gray-500">University of Wyoming, Laramie, WY | 2019</p>
+                    <p class="text-gray-700">Dissertation: Automatic Information Extraction from Camera-Trap Images Using Deep Learning</p>
+                    <p class="text-gray-700">GPA: 4.0/4.0</p>
+                </section>
+                <section>
+                    <h3 class="text-2xl font-semibold">M.Sc. in Artificial Intelligence</h3>
+                    <p class="text-gray-500">Isfahan University of Technology, Isfahan, Iran | 2010</p>
+                    <p class="text-gray-700">Thesis: Adaptive Mutation Strategies for Particle Swarm Optimization</p>
+                    <p class="text-gray-700">GPA: 3.57/4.0</p>
+                </section>
+                <section>
+                    <h3 class="text-2xl font-semibold">B.Sc. in Software Engineering</h3>
+                    <p class="text-gray-500">Kharazmi University, Tehran, Iran | 2007</p>
+                    <p class="text-gray-700">Capstone: Computer Adaptive Testing Systems for E-Learning</p>
+                </section>
+            </section>
+
+            <!-- Publications Slide -->
+            <section>
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-book mr-2 accent-text"></i>Selected Publications</h2>
+                <ul class="text-gray-700">
+                    <li>PNAS: Deep learning for camera-trap analysis (1,100+ citations).</li>
+                    <li>Methods in Ecology and Evolution: Species identification (200+ citations).</li>
+                    <li>4 papers at Bosch Center for AI on compression, robustness, generative AI.</li>
+                    <li>Conference paper: Neuromodulation for robotic models.</li>
+                    <li>Conference and journal paper: PSO variants with adaptive mutation.</li>
+                    <li>Conference paper: Neural network-based stock market prediction.</li>
+                </ul>
+            </section>
+
+            <!-- Honors and Awards Slide -->
+            <section class="accent-bg">
+                <h2 class="text-4xl font-bold mb-4"><i class="fas fa-trophy mr-2 accent-text"></i>Honors and Awards</h2>
+                <ul class="text-gray-700">
+                    <li>USDA NWRC Funding ($25k), 2018 - 98.6%-accurate wild pig detection.</li>
+                    <li>NSF REU Mentor Award ($5k), 2016 - AI/ecology mentorship.</li>
+                    <li>Full Ph.D. Scholarship, University of Wyoming (2014-2019).</li>
+                    <li>Top 1% Nationwide Merit Scholarships (Iran): Master's & Bachelor's.</li>
+                    <li>ACM ICPC Asia Regional Finalist, 2005.</li>
+                    <li>ACM ICPC Iran National Finalist, 2004.</li>
+                </ul>
+            </section>
+
+            <!-- Footer Slide -->
+            <section class="accent-bg">
+                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
+                <h2 class="text-4xl font-bold mb-4">Thank You</h2>
+                <p class="text-gray-300">© 2025 Arash Norouzzadeh. All rights reserved.</p>
+                <div class="mt-4 flex justify-center gap-6">
+                    <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin fa-lg"></i></a>
+                    <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github fa-lg"></i></a>
+                    <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap fa-lg"></i></a>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
+    </div>
 
-    <!-- Professional Experience Slide -->
-    <section id="experience" class="slide">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-briefcase mr-3 accent-text"></i>Professional Experience</h2>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Senior Machine Learning Research Scientist/Engineer</h3>
-                <p class="text-gray-500">Bosch Center for AI, Pittsburgh, PA | Aug 2019 - Present</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Building AGI-inspired tools to streamline researcher workflows.</li>
-                    <li>Optimized multi-modal model architectures for performance and scalability.</li>
-                    <li>Developed DevOps tools for distributed training across hundreds of GPUs.</li>
-                    <li>Deployed models to edge devices via compression and quantization.</li>
-                    <li>Pioneered neural network compression, resulting in 4 patents and 1 paper.</li>
-                    <li>Enhanced model robustness against adversarial attacks (1 patent, 1 paper).</li>
-                    <li>Contributed to vision systems framework (2 patents).</li>
-                    <li>Researched few-shot learning for road sign recognition (3 patents).</li>
-                    <li>Innovated explainable deep learning techniques (2 patents, 1 paper).</li>
-                    <li>Designed probabilistic programming for root cause analysis.</li>
-                    <li>Developed AI-driven data labeling platform (2 patents, 1 paper).</li>
-                    <li>Mentored 5+ interns, contributing to patents and publications.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Computer Vision Research Intern</h3>
-                <p class="text-gray-500">Microsoft Research (AI for Earth), Redmond, WA | Sep 2018 - Dec 2018</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Developed species identification system, reducing labeled samples by 99.5%.</li>
-                    <li>Engineered deep embedding learning for model generalizability.</li>
-                    <li>Published in Methods in Ecology and Evolution, cited 200+ times.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Deep Learning Intern</h3>
-                <p class="text-gray-500">APTIV, Agoura Hills, CA | May 2018 - Aug 2018</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Designed 3D object detection system using LIDAR and camera data.</li>
-                    <li>Benchmarked 3D detection architectures (AVOD, Point-Net, VoxelNet).</li>
-                    <li>Developed Python tools for LIDAR data processing.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Graduate Assistant</h3>
-                <p class="text-gray-500">University of Wyoming, Laramie, WY | Jan 2014 - May 2019</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Authored PNAS paper on camera-trap analysis, cited 1,100+ times.</li>
-                    <li>Designed wild pig detection system with 98.6% accuracy.</li>
-                    <li>Automated 50% of labeling workflows using transfer learning.</li>
-                    <li>Evaluated interpretability methods for transparent AI.</li>
-                    <li>Published on neuromodulation for robotic models (1 paper).</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Senior IT Expert</h3>
-                <p class="text-gray-500">Mellat Insurance Company, Tehran, Iran | Apr 2010 - Dec 2013</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Led team of 4 to deploy ATM software for financial institutions.</li>
-                    <li>Architected J2EE banking platform, reducing manual processes by 40%.</li>
-                    <li>Optimized infrastructure for 1,200+ transactions per second.</li>
-                    <li>Managed 10+ Oracle databases with 99.9% uptime.</li>
-                    <li>Integrated ATM systems with web applications via APIs.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Java Developer</h3>
-                <p class="text-gray-500">Douran Data Processing Company, Tehran, Iran | Mar 2007 - Mar 2010</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Architected Java/J2EE ERP modules.</li>
-                    <li>Developed accounting workflow system, reducing labor by 80%.</li>
-                    <li>Designed migration strategy with zero data loss.</li>
-                    <li>Mentored developers, boosting productivity by 30%.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3 class="text-xl font-semibold text-blue-900">Research Assistant</h3>
-                <p class="text-gray-500">Isfahan University of Technology, Isfahan, Iran | Jan 2009 - May 2010</p>
-                <ul class="list-disc pl-6 text-gray-700 mt-2">
-                    <li>Designed PSO variants, published in 1 conference and 1 journal paper.</li>
-                    <li>Authored paper on neural network-based stock market prediction.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Slide -->
-    <section id="education" class="slide accent-bg text-white">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-graduation-cap mr-3 accent-text"></i>Education</h2>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold text-blue-900">Ph.D. in Computer Science</h3>
-                <p class="text-gray-500">University of Wyoming, Laramie, WY | 2019</p>
-                <p class="text-gray-700">Dissertation: Automatic Information Extraction from Camera-Trap Images Using Deep Learning, advised by Dr. Jeff Clune</p>
-                <p class="text-gray-700">GPA: 4.0/4.0</p>
-            </div>
-            <div class="mb-6">
-                <h3 class="text-xl font-semibold text-blue-900">M.Sc. in Artificial Intelligence</h3>
-                <p class="text-gray-500">Isfahan University of Technology, Isfahan, Iran | 2010</p>
-                <p class="text-gray-700">Thesis: Adaptive Mutation Strategies for Particle Swarm Optimization, advised by Dr. Mohammad Reza Ahmadzadeh</p>
-                <p class="text-gray-700">GPA: 3.57/4.0</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold text-blue-900">B.Sc. in Software Engineering</h3>
-                <p class="text-gray-500">Kharazmi University, Tehran, Iran | 2007</p>
-                <p class="text-gray-700">Capstone: Computer Adaptive Testing Systems for E-Learning</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Slide -->
-    <section id="publications" class="slide">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-book mr-3 accent-text"></i>Selected Publications</h2>
-            <ul class="list-disc pl-6 text-gray-700">
-                <li>PNAS: Deep learning for camera-trap analysis, 1,100+ citations.</li>
-                <li>Methods in Ecology and Evolution: Species identification, 200+ citations.</li>
-                <li>4 papers at Bosch Center for AI on compression, robustness, generative AI.</li>
-                <li>Conference paper: Neuromodulation for robotic forward models.</li>
-                <li>Conference and journal paper: PSO variants with adaptive mutation.</li>
-                <li>Conference paper: Neural network-based stock market prediction.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Honors and Awards Slide -->
-    <section id="awards" class="slide accent-bg text-white">
-        <div class="card">
-            <h2 class="section-header"><i class="fas fa-trophy mr-3 accent-text"></i>Honors and Awards</h2>
-            <ul class="list-disc pl-6 text-gray-700">
-                <li>USDA NWRC Research Funding ($25k), 2018 - 98.6%-accurate wild pig detection.</li>
-                <li>NSF REU Mentor Award ($5k), 2016 - AI/ecology mentorship.</li>
-                <li>Full Ph.D. Scholarship & Stipend, University of Wyoming (2014-2019).</li>
-                <li>Top 1% Nationwide Merit Scholarships (Iran): Master's & Bachelor's.</li>
-                <li>ACM ICPC Asia Regional Finalist, 2005.</li>
-                <li>ACM ICPC Iran National Finalist, 2004.</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Navigation Buttons -->
-    <button class="nav-button left-4 top-1/2 transform -translate-y-1/2" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-    <button class="nav-button right-4 top-1/2 transform -translate-y-1/2" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-
-    <!-- Footer -->
-    <footer class="accent-bg text-white py-10">
-        <div class="container mx-auto px-4 text-center">
-            <img src="logo.png" alt="Logo" class="w-16 h-16 mx-auto mb-4 transform hover:scale-105 transition duration-300" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
-            <p class="text-gray-300">© 2025 Arash Norouzzadeh. All rights reserved.</p>
-            <div class="mt-4 flex justify-center gap-6">
-                <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin fa-lg"></i></a>
-                <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github fa-lg"></i></a>
-                <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap fa-lg"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- GSAP Animation Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.js"></script>
     <script>
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-
-        function showSlide(index) {
-            gsap.to(slides[currentSlide], { opacity: 0, x: -100, duration: 0.5 });
-            currentSlide = (index + slides.length) % slides.length;
-            gsap.fromTo(slides[currentSlide], { opacity: 0, x: 100 }, { opacity: 1, x: 0, duration: 0.5 });
-            slides.forEach((slide, i) => {
-                slide.style.display = i === currentSlide ? 'flex' : 'none';
-            });
-        }
-
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        // Initialize
-        slides.forEach((slide, i) => {
-            slide.style.display = i === 0 ? 'flex' : 'none';
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            controls: true,
+            progress: true,
+            center: true,
+            slideNumber: true
         });
-
-        // Smooth scroll for sidebar links
-        document.querySelectorAll('.nav-link').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetIndex = Array.from(slides).findIndex(slide => slide.id === targetId);
-                if (targetIndex !== -1) showSlide(targetIndex);
-            });
-        });
-
-        // Animate card content on load
-        gsap.from('.card', { opacity: 0, y: 50, stagger: 0.2, duration: 1, ease: 'power2.out' });
     </script>
 </body>
 </html>
