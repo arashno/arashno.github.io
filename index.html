@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arash Norouzzadeh - Senior Research Scientist</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/theme/white.min.css" id="theme">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/reveal.min.css">
+    <link rel="stylesheet" href="dist/theme/white.min.css" id="theme">
+    <link rel="stylesheet" href="css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: sans-serif; }
         .reveal { font-size: 26px; }
         .reveal h1, .reveal h2, .reveal h3 { color: #1E3A8A; }
         .reveal section { background: #FFFFFF; padding: 1.5rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
@@ -51,7 +50,7 @@
         <div class="slides">
             <!-- Hero Slide -->
             <section class="accent-bg">
-                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
+                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.style.display='none'">
                 <h1 class="text-5xl font-bold">Arash Norouzzadeh</h1>
                 <h2 class="text-3xl mt-2">Senior Research Scientist at Bosch Center for AI</h2>
                 <div class="mt-6 flex flex-wrap justify-center gap-4 text-xl">
@@ -61,7 +60,7 @@
                     <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github mr-2"></i>GitHub</a>
                     <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap mr-2"></i>Google Scholar</a>
                 </div>
-                <img src="profile.jpg" alt="Arash Norouzzadeh" class="w-32 h-32 rounded-full mt-6 object-cover shadow-lg" onerror="this.src='https://via.placeholder.com/128?text=Profile'">
+                <img src="profile.jpg" alt="Arash Norouzzadeh" class="w-32 h-32 rounded-full mt-6 object-cover shadow-lg" onerror="this.style.display='none'">
             </section>
 
             <!-- Summary Slide -->
@@ -261,7 +260,7 @@
 
             <!-- Footer Slide -->
             <section class="accent-bg">
-                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
+                <img src="logo.png" alt="Logo" class="logo w-16 h-16 mb-4" onerror="this.style.display='none'">
                 <h2 class="text-4xl font-bold mb-4">Thank You</h2>
                 <p class="text-gray-300">© 2025 Arash Norouzzadeh. All rights reserved.</p>
                 <div class="mt-4 flex justify-center gap-6">
@@ -273,19 +272,24 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.js"></script>
+    <script src="js/reveal.min.js"></script>
     <script>
-        Reveal.initialize({
-            hash: true,
-            transition: 'slide',
-            transitionSpeed: 'default',
-            controls: true,
-            progress: true,
-            center: true,
-            slideNumber: true,
-            width: 960,
-            height: 700
-        });
+        try {
+            Reveal.initialize({
+                hash: false,
+                transition: 'slide',
+                transitionSpeed: 'default',
+                controls: true,
+                progress: true,
+                center: true,
+                slideNumber: true,
+                width: 960,
+                height: 700,
+                preload: true
+            });
+        } catch (e) {
+            console.error('Reveal.js failed to initialize:', e);
+        }
     </script>
 </body>
 </html>
