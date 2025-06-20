@@ -5,196 +5,525 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arash Norouzzadeh - Senior Research Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/theme/white.min.css" id="theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/theme/night.min.css" id="theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        body { font-family: sans-serif; }
-        .reveal { font-size: 26px; }
-        .reveal h1, .reveal h2, .reveal h3 { color: #1E3A8A; }
-        .reveal section {
-            background: #FFFFFF;
-            padding: 1.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            height: 600px; /* Set a fixed height for all slides */
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        :root {
+            --primary-color: #f4a106;
+            --secondary-color: #dd7009;
+            --text-color: #ffffff;
+            --muted-text: #6B7280;
+            --icon-color-1: #2E7D32; /* Green */
+            --icon-color-2: #FFD54F; /* Yellow */
+            --icon-color-3: #4DB6AC; /* Teal */
+            --icon-color-4: #7986CB; /* Blue */
+            --icon-color-5: #E57373; /* Red */
+            --icon-color-6: #BA68C8; /* Purple */
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .reveal {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            margin-top: 50px;
+            font-size: 16px;
+        }
+
+        .reveal .controls {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            z-index: 1000 !important;
+        }
+        .reveal .slides {
+            text-align: left;
+            padding-left: 40px; /* Optional: adds consistent left padding for content */
+        }
+
+        /* Progress Bar */
+        #stage-progress {
+            display: flex;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            font-size: 14px;
+            z-index: 1000;
+        }
+
+        .stage {
+            flex: 1;
+            text-align: center;
+            padding: 12px 0;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            border-right: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .stage:last-child {
+            border-right: none;
+        }
+
+        .stage.active {
+            background-color: var(--primary-color);
+            opacity: 1;
+            font-weight: bold;
+        }
+
+        /* First Slide */
+        .first-slide-container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 80px;
+            box-sizing: border-box;
+        }
+
+        .first-slide-left,
+        .first-slide-right {
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
-        .accent-text { color: #D4AF37; }
-        .icon-link { color: #1E3A8A; }
-        .icon-link:hover { color: #D4AF37; }
-        .reveal ul { list-style-type: disc; padding-left: 1.5rem; }
-        .reveal li { margin-bottom: 0.5rem; font-size: 0.9em; }
-        .timeline-item { position: relative; padding-left: 2rem; margin-bottom: 1rem; text-align: left; }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 0.5rem;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #1E3A8A;
+
+        .first-slide-left {
+            text-align: left;
         }
-        .timeline-item::after {
-            content: '\f058';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            top: 0.4rem;
-            color: #D4AF37;
-            font-size: 0.9rem;
+
+        .first-slide-right img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border-radius: 8px;
         }
-        .logo { transition: transform 0.3s; }
-        .logo:hover { transform: scale(1.1); }
-        .reveal .controls { color: #D4AF37; }
-        .reveal .progress { background: #D4AF37; }
-        .reveal .slide-number { color: #D4AF37; }
+
+        /* General Section Styling */
+        .reveal h1 {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            text-align: left;
+            text-transform: none;
+        }
+
+        .reveal strong {
+            color: var(--primary-color);
+        }
+        .reveal p {
+            margin: 0;
+        }
+
+        .reveal ul {
+            list-style: none;
+            padding-left: 0;
+            line-height: 1.8;
+            text-align: justify;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .reveal ul ul {
+            margin-left: 20px;
+            font-size: 0.9em;
+            list-style: none; /* Remove bullets */
+            line-height: 1.4; /* Reduce line spacing (default was 1.8) */
+            margin-bottom: 0.5rem; /* Reduce space below the list */
+        }
+
+        .icon-link {
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-link:hover {
+            color: var(--primary-color);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .company-header img {
+            width: 80px;
+            height: auto;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        .company-header p {
+            color: var(--muted-text);
+            font-size: 0.75em;
+            margin: 0.25rem 0 0;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .first-slide-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .first-slide-left,
+            .first-slide-right {
+                flex: none;
+                width: 100%;
+                text-align: center;
+            }
+
+            .first-slide-right img {
+                width: 80%;
+                height: auto;
+            }
+
+            .reveal {
+                font-size: 14px;
+            }
+
+            .reveal h1 {
+                font-size: 1.8em;
+            }
+
+            .reveal h2 {
+                font-size: 1.5em;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="stage-progress">
+        <div class="stage" data-start="0" data-end="1">Summary</div>
+        <div class="stage" data-start="2" data-end="4">Technical Expertise</div>
+        <div class="stage" data-start="5" data-end="12">Professional Experience</div>
+        <div class="stage" data-start="13" data-end="13">Education</div>
+        <div class="stage" data-start="14" data-end="14">Publications</div>
+        <div class="stage" data-start="15" data-end="15">Honors & Awards</div>
+    </div>
     <div class="reveal">
         <div class="slides">
             <section>
-                <img src="logo.png" alt="Logo" class="logo" style="width: 64px; height: 64px; margin-bottom: 1rem;" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
-                <h1 style="font-size: 2.5em; font-weight: bold;">Arash Norouzzadeh</h1>
-                <h2 style="font-size: 1.8em; margin-top: 0.5rem;">Senior Research Scientist at Bosch Center for AI</h2>
-                <div style="margin-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; font-size: 1.1em;">
-                    <a href="tel:+13072236636" class="icon-link"><i class="fas fa-phone mr-2"></i>307-223-6636</a>
-                    <a href="mailto:arash.norouzzadeh@gmail.com" class="icon-link"><i class="fas fa-envelope mr-2"></i>Email</a>
-                    <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
-                    <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github mr-2"></i>GitHub</a>
-                    <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap mr-2"></i>Google Scholar</a>
-                </div>
-                <img src="profile.jpg" alt="Arash Norouzzadeh" style="width: 128px; height: 128px; border-radius: 50%; margin-top: 1.5rem; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" onerror="this.src='https://via.placeholder.com/128?text=Profile'">
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-user mr-2 accent-text"></i>Summary</h2>
-                <p style="color: #4A5568; line-height: 1.6;">
-                    Results-driven Computer Scientist with 10+ years of experience leading and contributing to 15+ successful projects from concept to deployment. Delivered 12+ patented innovations in model optimization, generative AI, and computer vision, along with 20+ publications receiving 2500+ citations. A proven leader in mentoring teams and driving cross-functional R&D, with a focus on scalable architectures, MLOps pipelines, and low-resource learning. Combines technical mastery (Python, PyTorch, distributed systems) with a strong commitment to translating cutting-edge research into production-grade solutions.
-                </p>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-cogs mr-2 accent-text"></i>Technical Expertise: Machine Learning & AI</h2>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Core Architectures: Transformers, CNNs, RNNs, Graph Neural Networks (GNNs).</li>
-                    <li>Generative AI: Diffusion Models, GANs, VAEs, Stable Diffusion, Large Language Models (LLMs), Vision-Language Models.</li>
-                    <li>Learning Strategies: Supervised/Unsupervised Learning, Deep Reinforcement Learning (DRL), Self-Supervised, Transfer, and Active Learning.</li>
-                    <li>Applications: Computer Vision (CV), Natural Language Processing (NLP), Multi-modal Systems.</li>
-                    <li>Model Development: Traditional ML (SVMs, ensembles), Quantization, Pruning, Distillation, Explainable AI (XAI), Adversarial Robustness.</li>
-                    <li>Deployment: Model Serving, ONNX, MLOps, Responsible AI Governance.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-cogs mr-2 accent-text"></i>Technical Expertise: Software Development & Infrastructure</h2>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Languages: Python (proficient), Java, C/C++, SQL, Bash, CUDA.</li>
-                    <li>ML Frameworks: PyTorch, TensorFlow, Hugging Face, Scikit-learn, Keras, PyTorch Lightning.</li>
-                    <li>Cloud/DevOps: AWS, Azure, Docker, Kubernetes, CI/CD (GitHub Actions/Jenkins).</li>
-                    <li>Tools: Git, SVN, Apache Spark, Hadoop, Agile, Algorithm Design.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-cogs mr-2 accent-text"></i>Technical Expertise: Leadership & Project Execution</h2>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Technical Leadership: Cross-functional team management (R&D, engineering, product), mentoring junior scientists and engineers to enhance their expertise.</li>
-                    <li>Full-Cycle Delivery: Ideation to deployment of AI systems, patent preparation, technical roadmap design.</li>
-                    <li>Operational Excellence: Budgeting, stakeholder alignment, experimental design, technical writing/publications.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 style="font-size: 1.8em; font-weight: bold; margin-bottom: 0.5rem;"><i class="fas fa-briefcase mr-2 accent-text"></i>Senior Machine Learning Research Scientist/Engineer</h2>
-                <p style="color: #6B7280; margin-bottom: 1rem;">Bosch Center for Artificial Intelligence, Pittsburgh, PA | Aug 2019 - Present</p>
-                <div class="timeline-item">
-                    <ul style="color: #4A5568;">
-                        <li>Building AGI-inspired tools to streamline workflows for Bosch researchers (e.g., automating repetitive tasks).</li>
-                        <li>Optimizing architecture design of multi-modal models for enhanced performance and scalability.</li>
-                        <li>Enhancing vision-language models using interleaved text-image and text-only datasets for superior performance.</li>
-                        <li>Developed DevOps tools for distributed training of foundational models (billions of parameters) across hundreds of GPUs.</li>
-                        <li>Deployed large models to resource-constrained edge devices via model compression, quantization, and pruning, optimizing for low memory and computational overhead.</li>
-                    </ul>
+                <div class="first-slide-container">
+                    <div class="first-slide-left">
+                        <h1>Arash Norouzzadeh</h1>
+                        <h2>Senior Research Scientist at Bosch Center for AI</h2>
+                        <div class="contact-links">
+                            <a href="tel:+13072236636" class="icon-link"><i class="fas fa-phone" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>307-223-6636</a>
+                            <a href="mailto:arash.norouzzadeh@gmail.com" class="icon-link"><i class="fas fa-envelope" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Email</a>
+                            <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>LinkedIn</a>
+                            <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>GitHub</a>
+                            <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap" style="color: var(--icon-color-5); margin-right: 0.5rem;"></i>Google Scholar</a>
+                        </div>
+                    </div>
+                    <div class="first-slide-right">
+                        <img src="Images/1571089337401.jpeg" alt="Arash Norouzzadeh" aria-label="Portrait of Arash Norouzzadeh">
+                    </div>
                 </div>
             </section>
-
             <section>
-                <h2 style="font-size: 1.8em; font-weight: bold; margin-bottom: 0.5rem;"><i class="fas fa-briefcase mr-2 accent-text"></i>Computer Vision Research Intern</h2>
-                <p style="color: #6B7280; margin-bottom: 1rem;">Microsoft Research (AI for Earth), Redmond, WA | Sep 2018 - Dec 2018</p>
-                <div class="timeline-item">
-                    <ul style="color: #4A5568;">
-                        <li>Spearheaded development of an automatic species identification system for camera-trap images, leveraging deep active learning to achieve state-of-the-art accuracy with 99.5% fewer labeled samples.</li>
-                        <li>Engineered deep embedding learning techniques to improve feature representation for enhancing model generalizability across diverse ecosystems.</li>
-                    </ul>
+                <h2><i class="fas fa-user" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Summary</h2>
+                <ul>
+                    <li><i class="fas fa-check-circle" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i><strong>Results-driven Computer Scientist</strong> with 10+ years of experience leading and contributing to 15+ successful projects from concept to deployment.</li>
+                    <li><i class="fas fa-lightbulb" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Delivered <strong>12+ patented innovations</strong> in model optimization, generative AI, and computer vision, along with <strong>20+ publications</strong> receiving <strong>2500+ citations</strong>.</li>
+                    <li><i class="fas fa-users" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>A proven leader in mentoring teams and driving cross-functional R&D, focusing on scalable architectures, MLOps pipelines, and low-resource ML.</li>
+                    <li><i class="fas fa-tools" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>Possesses extensive technical expertise and a proven ability to turn portability research into high-quality production solutions.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Machine Learning & AI</h2>
+                <ul>
+                    <li><i class="fas fa-brain" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i><strong>Core Architectures:</strong> Transformers, CNNs, RNNs, Graph Neural Networks (GNNs).</li>
+                    <li><i class="fas fa-magic" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>Generative AI:</strong> Diffusion Models, GANs, VAEs, Stable Diffusion, Large Language Models (LLMs), Vision-Language Models.</li>
+                    <li><i class="fas fa-flask" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Learning Strategies:</strong> Supervised/Unsupervised Learning, Deep Reinforcement Learning (DRL), Self-Supervised, Transfer, and Active Learning.</li>
+                    <li><i class="fas fa-camera" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Applications:</strong> Computer Vision (CV), Natural Language Processing (NLP), Multi-modal Systems.</li>
+                    <li><i class="fas fa-cogs" style="color: var(--icon-color-5); margin-right: 0.5rem;"></i><strong>Model Development:</strong> Traditional ML (SVMs, ensembles), Quantization, Pruning, Distillation, Explainable AI (XAI), Adversarial Robustness.</li>
+                    <li><i class="fas fa-server" style="color: var(--icon-color-6); margin-right: 0.5rem;"></i><strong>Deployment:</strong> Model Serving, ONNX, MLOps, Responsible AI Governance.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Software Development & Infrastructure</h2>
+                <ul>
+                    <li><i class="fas fa-code" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i><strong>Languages:</strong> Python (proficient), Java, C/C++, SQL, Bash, CUDA.</li>
+                    <li婦
+                    <li><i class="fas fa-brain" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>ML Frameworks:</strong> PyTorch, TensorFlow, Hugging Face, Scikit-learn, Keras, PyTorch Lightning.</li>
+                    <li><i class="fas fa-cloud" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Cloud/DevOps:</strong> AWS, Azure, Docker, Kubernetes, CI/CD (GitHub Actions/Jenkins).</li>
+                    <li><i class="fas fa-wrench" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Tools:</strong> Git, SVN, Apache Spark, Hadoop, Agile, Algorithm Design.</li>
+                </ul>
+            </section>
+            <section>
+                <h2><i class="fas fa-cogs" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Leadership & Project Execution</h2>
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>Technical Leadership:</strong> Cross-functional team management (R&D, engineering, product), mentoring junior scientists and engineers to enhance their expertise.</li>
+                    <li><i class="fas fa-lightbulb" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Full-Cycle Delivery:</strong> Ideation to deployment of AI systems, patent preparation, technical roadmap design.</li>
+                    <li><i class="fas fa-chart-line" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Operational Excellence:</strong> Budgeting, stakeholder alignment, experimental design, technical writing/publications.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/bosch.png" alt="Bosch Logo">
+                    <div>
+                        <h2>Senior Research Scientist/Engineer</h2>
+                        <p>Bosch Center for Artificial Intelligence, Pittsburgh, PA | Aug 2019 – Present</p>
+                    </div>
                 </div>
+                <ul>
+                    <li><i class="fas fa-road" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i><strong>Foundation Models for ADAS:</strong>
+                        <ul>
+                            <li>Enhancing the performance and scalability of MLLMs through advanced architectural optimization and efficient multimodal integration.</li>
+                            <li>Enhancing MLLMs by leveraging extensive interleaved text-image and text-only datasets for superior performance.</li>
+                            <li>Contributed to the development of MLLMs by integrating multi-sensor data streams (audio, radar, LiDAR, vision) with language inputs, enhancing multimodal reasoning capabilities.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-robot" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>AGI Readiness:</strong>
+                        <ul>
+                            <li>Creating AGI-inspired automation tools that significantly reduce manual effort and accelerate research workflows at Bosch.</li>
+                            <li>In agentic AI development using frameworks like LangChain to build autonomous, goal-driven agents that integrate tools, memory, and reasoning.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-server" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Large-Scale Model Training & Deployment:</strong>
+                        <ul>
+                            <li>Developed DevOps tools for distributed training of foundational models (billions of parameters) across hundreds of GPUs.</li>
+                            <li>Deployed large models to resource-constrained edge devices via model compression, quantization, and pruning, optimizing for low memory and computational overhead.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-gear" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Model Optimization & Robustness:</strong>
+                        <ul>
+                            <li>Pioneered a neural network compression/acceleration technique for deep learning systems, resulting in 4 patents and 1 research paper.</li>
+                            <li>Developed a method to enhance robustness of pre-trained models against adversarial attacks, leading to 1 patent and 1 published paper.</li>
+                        </ul>
+                    </li>
+                </ul>
             </section>
-
             <section>
-                <h2 style="font-size: 1.8em; font-weight: bold; margin-bottom: 0.5rem;"><i class="fas fa-briefcase mr-2 accent-text"></i>Deep Learning Intern</h2>
-                <p style="color: #6B7280; margin-bottom: 1rem;">APTIV, Agoura Hills, CA | May 2018 - Aug 2018</p>
-                <div class="timeline-item">
-                    <ul style="color: #4A5568;">
-                        <li>Designed and implemented a 3D object detection system by integrating LIDAR and camera data using advanced sensor fusion techniques for autonomous driving applications.</li>
-                        <li>Researched and benchmarked state-of-the-art 3D detection architectures (AVOD, Point-Net, VoxelNet, MV3D), refining feature extraction pipelines to enhance detection accuracy.</li>
-                    </ul>
+                <div class="company-header">
+                    <img src="Images/bosch.png" alt="Bosch Logo">
+                    <div>
+                        <h2>Senior Research Scientist/Engineer</h2>
+                        <p>Bosch Center for Artificial Intelligence, Pittsburgh, PA | Aug 2019 – Present</p>
+                    </div>
                 </div>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-graduation-cap mr-2 accent-text"></i>Ph.D. in Computer Science</h2>
-                <p style="color: #6B7280;">University of Wyoming, Laramie, WY | 2019</p>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Dissertation: Automatic Information Extraction from Camera-Trap Images Using Deep Learning, advised by Dr. Jeff Clune (DeepMind/UBC).</li>
-                    <li>GPA: 4.0/4.0.</li>
+                <ul>
+                    <li><i class="fas fa-cubes" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i><strong>Software Frameworks & Applications:</strong>
+                        <ul>
+                            <li>Contributed to a software framework for training robust vision systems (e.g., image classification, object detection), filed in 2 patents.</li>
+                            <li>Researched few-shot learning methods using knowledge graphs for road sign recognition, resulting in 3 patents.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-wand-magic-sparkles" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>Generative AI & Explainability:</strong>
+                        <ul>
+                            <li>Innovated techniques for explainable deep learning and generative models (e.g., color quantization), filed in 2 patents and 1 paper.</li>
+                            <li>Leveraged pre-trained foundation models to improve Bosch’s automated valet parking system.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-chart-bar" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Data Systems & Analytics:</strong>
+                        <ul>
+                            <li>Designed a probabilistic programming solution for root cause analysis in defective car parts datasets using Bayesian inference.</li>
+                            <li>Developed an internal AI-driven data labeling platform with knowledge graphs and gamification, prioritizing data privacy and avoiding third-party tools. Filed 2 patents and 1 paper.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-people-group" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Leadership & Mentorship:</strong>
+                        <ul>
+                            <li>Mentored 5+ interns on ML/computer vision research, with contributions leading to patent filings, publications, and skill development.</li>
+                            <li>Filed 12+ patents and published 4 papers across compression, robustness, and generative AI.</li>
+                        </ul>
+                    </li>
                 </ul>
             </section>
-
             <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-graduation-cap mr-2 accent-text"></i>M.Sc. in Artificial Intelligence</h2>
-                <p style="color: #6B7280;">Isfahan University of Technology, Isfahan, Iran | 2010</p>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Thesis: Design and Implementation of Adaptive Mutation Strategies for Particle Swarm Optimization (PSO), advised by Dr. Mohammad Reza Ahmadzadeh.</li>
-                    <li>GPA: 3.57/4.0.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-book mr-2 accent-text"></i>Selected Publications</h2>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>Authored a groundbreaking seminal paper on deep learning for automated camera-trap analysis (species identification, population counting, behavior detection), published in PNAS with 1,100+ citations.</li>
-                    <li>Published a journal paper in Methods in Ecology and Evolution on automatic species identification for camera-trap images, cited 200+ times.</li>
-                    <li>Published 4 papers at Bosch Center for AI across compression, robustness, and generative AI.</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;"><i class="fas fa-trophy mr-2 accent-text"></i>Honors and Awards</h2>
-                <ul style="color: #4A5568; text-align: left;">
-                    <li>USDA NWRC Research Funding ($25k), 2018 - Funded development of 98.6%-accurate wild pig detection system.</li>
-                    <li>NSF REU Mentor Award ($5k), 2016 - Recognized mentorship of undergraduates in AI/ecology projects.</li>
-                    <li>Full Ph.D. Scholarship & Stipend, University of Wyoming (2014-2019).</li>
-                    <li>Top 1% Nationwide Merit Scholarships (Iran): Master's Degree (2007-2009) | Bachelor's Degree (2003-2007).</li>
-                </ul>
-            </section>
-
-            <section>
-                <img src="logo.png" alt="Logo" class="logo" style="width: 64px; height: 64px; margin-bottom: 1rem;" onerror="this.src='https://via.placeholder.com/64?text=Logo'">
-                <h2 style="font-size: 2em; font-weight: bold; margin-bottom: 1rem;">Thank You</h2>
-                <p style="color: #6B7280;">© 2025 Arash Norouzzadeh. All rights reserved.</p>
-                <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem;">
-                    <a href="https://linkedin.com/in/arashno" class="icon-link"><i class="fab fa-linkedin fa-lg"></i></a>
-                    <a href="https://github.com/arashno" class="icon-link"><i class="fab fa-github fa-lg"></i></a>
-                    <a href="https://scholar.google.com/citations?user=AMvWPWsAAAAJ&hl=en" class="icon-link"><i class="fas fa-graduation-cap fa-lg"></i></a>
+                <div class="company-header">
+                    <img src="Images/microsoft.png" alt="Microsoft Logo">
+                    <div>
+                        <h2>Computer Vision Research Intern</h2>
+                        <p>Microsoft Research (AI for Earth), Redmond, WA | Sep 2018 – Dec 2018</p>
+                    </div>
                 </div>
+                <ul>
+                    <li><i class="fas fa-people-group" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Spearheaded development of an automatic species identification system for camera-trap images, leveraging deep active learning to achieve state-of-the-art accuracy with 99.5% fewer labeled samples.</li>
+                    <li><i class="fas fa-gear" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Engineered deep embedding learning techniques to improve feature representation for enhancing model generalizability across diverse ecosystems.</li>
+                    <li><i class="fas fa-book" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Published a journal paper in a top-tier journal, Methods in Ecology and Evolution, cited 200+ times, for advancing low-resource ML in ecological applications.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/aptiv.png" alt="Aptiv Logo">
+                    <div>
+                        <h2>Deep Learning Intern</h2>
+                        <p>APTIV, Agoura Hills, CA | May 2018 – Aug 2018</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><i class="fas fa-car" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Designed and implemented a 3D object detection system by integrating LIDAR and camera data using advanced sensor fusion techniques for autonomous driving applications.</li>
+                    <li><i class="fas fa-cogs" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Researched and benchmarked state-of-the-art 3D detection architectures (AVOD, Point-Net, VoxelNet, MV3D), refining feature extraction pipelines to enhance detection accuracy.</li>
+                    <li><i class="fas fa-tools" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Developed a suite of Python-based tools for efficient LIDAR data processing, including point-cloud filtering, annotation, and visualization, streamlining dataset preparation workflows.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/wyoming.jpg" alt="University of Wyoming Logo">
+                    <div>
+                        <h2>Graduate Assistant</h2>
+                        <p>University of Wyoming, Laramie, WY | Jan 2014 – May 2019</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><i class="fas fa-book" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Authored a seminal paper on deep learning for automated camera-trap analysis (species identification, population counting, behavior detection), published in PNAS with 1,100+ citations.</li>
+                    <li><i class="fas fa-cogs" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Proposed a multi-task architecture for ecological use cases, setting benchmarks for AI in conservation biology.</li>
+                    <li><i class="fas fa-piggy-bank" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Designed a wild pig detection system with 98.6% accuracy for the USDA National Wildlife Research Center, addressing invasive species tracking challenges.</li>
+                    <li><i class="fas fa-exchange-alt" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>Pioneered transfer learning strategies to automate over 50% of labeling workflows using only 3,000 annotated samples, improving data efficiency for low-resource ecological datasets.</li>
+                    <li><i class="fas fa-search" style="color: var(--icon-color-5); margin-right: 0.5rem;"></i>Evaluated interpretability methods (e.g., saliency maps, feature visualization) to enable transparent adoption of deep learning models in ecological studies. Published 1 journal paper.</li>
+                    <li><i class="fas fa-robot" style="color: var(--icon-color-6); margin-right: 0.5rem;"></i>Investigated neuromodulation techniques (e.g., dopamine-inspired plasticity) to enhance adaptability of robotic forward models. Published findings in 1 conference paper.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/mellat.png" alt="Mellat Insurance Logo">
+                    <div>
+                        <h2>Senior IT Expert</h2>
+                        <p>Mellat Insurance Company, Tehran, Iran | Apr 2010 – Dec 2013</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><i class="fas fa-users" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Led a cross-functional team of 4 developers to design, implement, and deploy an enterprise-grade ATM software solution adopted by multiple financial institutions.</li>
+                    <li><i class="fas fa-chalkboard-teacher" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Mentored junior developers in resolving complex technical challenges, improving code quality and adherence to SDLC best practices.</li>
+                    <li><i class="fas fa-server" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Architected a J2EE-based banking platform with modular subsystems, including a web-based calendar system and workflow engine, reducing manual processes by 40% for internal teams.</li>
+                    <li><i class="fas fa-tachometer-alt" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>Optimized server infrastructure to support 1,200+ transactions per second, enhancing scalability for high-volume financial operations.</li>
+                    <li><i class="fas fa-database" style="color: var(--icon-color-5); margin-right: 0.5rem;"></i>Managed 10+ large-scale Oracle databases (performance tuning, backup/recovery, security), ensuring 99.9% uptime for mission-critical applications.</li>
+                    <li><i class="fas fa-plug" style="color: var(--icon-color-6); margin-right: 0.5rem;"></i>Pioneered integration of ATM systems with web applications using SOAP/REST APIs, enabling real-time transaction processing and third-party service interoperability.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/douran.png" alt="Douran Group Logo">
+                    <div>
+                        <h2>Java Developer</h2>
+                        <p>Douran Group, Tehran, Iran | Mar 2007 – Mar 2010</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><i class="fas fa-cubes" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Architected and implemented multiple core modules of a Java/J2EE-based ERP solution, including inventory management, financial reporting, and user access control subsystems.</li>
+                    <li><i class="fas fa-cog" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Spearheaded the development of an automated accounting workflow system, reducing manual labor by 80% for client operations through process digitization and rule-based automation.</li>
+                    <li><i class="fas fa-exchange-alt" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Designed and executed a large-scale software migration strategy for enterprise clients, ensuring zero data loss and minimal downtime during transitions from legacy systems to modern ERP platforms.</li>
+                    <li><i class="fas fa-chalkboard-teacher" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>Mentored junior developers in Agile best practices, code reviews, and subsystem integration, accelerating team productivity by 30% across two major client projects.</li>
+                    <li><i class="fas fa-users-cog" style="color: var(--icon-color-5); margin-right: 0.5rem;"></i>Collaborated with cross-functional teams (QA, DevOps) to deploy ERP solutions, resolving compatibility issues and optimizing performance for high-concurrency environments.</li>
+                </ul>
+            </section>
+            <section>
+                <div class="company-header">
+                    <img src="Images/iut.jpeg" alt="Isfahan University of Technology Logo">
+                    <div>
+                        <h2>Research Assistant</h2>
+                        <p>Isfahan University of Technology, Isfahan, Iran | Jan 2009 – May 2010</p>
+                    </div>
+                </div>
+                <ul>
+                    <li><i class="fas fa-cogs" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Designed two novel PSO variants with adaptive mutation rate control to escape local optima, improving global optimization performance in non-convex, multi-modal landscapes. Resulted in 1 conference paper + 1 journal paper.</li>
+                    <li><i class="fas fa-chart-line" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Authored 1 conference paper on stock market prediction using neural networks, proposing a novel data imbalance mitigation technique (e.g., synthetic minority oversampling or cost-sensitive learning) to enhance model robustness in low-signal regimes.</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Education</h2>
+                <ul>
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <img width="75" src="Images/wyoming.jpg" alt="University of Wyoming Logo" style="margin-right: 10px;">
+                        <div>
+                            <strong>Ph.D. in Computer Science</strong>
+                            <p>University of Wyoming, Laramie, WY, USA - 2019</p>
+                            <ul>
+                                <li><strong>Dissertation:</strong> Automatic Information Extraction from Camera-Trap Images Using Deep Learning, advised by <a href="http://jeffclune.com/">Dr. Jeff Clune (DeepMind/UBC)</a></li>
+                                <li><strong>GPA:</strong> 4.0/4.0</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <img width="75" src="Images/iut.jpeg" alt="Isfahan University of Technology Logo" style="margin-right: 10px;">
+                        <div>
+                            <strong>M.Sc. in Artificial Intelligence</strong>
+                            <p>Isfahan University of Technology, Isfahan, Iran - 2010</p>
+                            <ul>
+                                <li><strong>Thesis:</strong> Design and Implementation of Adaptive Mutation Strategies for Particle Swarm Optimization (PSO), advised by <a href="https://scholar.google.com/citations?user=0TmalsgAAAAJ&hl=en">Dr. Mohammad Reza Ahmadzadeh</a></li>
+                                <li><strong>GPA:</strong> 3.57/4.0</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <img width="75" src="Images/Kharazmyi.png" alt="Kharazmi University Logo" style="margin-right: 10px;">
+                        <div>
+                            <strong>B.Sc. in Software Engineering</strong>
+                            <p>Kharazmi University, Tehran, Iran - 2007</p>
+                            <ul>
+                                <li><strong>Capstone:</strong> Computer Adaptive Testing Systems for E-Learning, supervised by <a href="https://scholar.google.com/citations?user=NIgpCKkAAAAJ&hl=en">Dr. Jamshid Shanbehzadeh</a></li>
+                                <li><strong>GPA:</strong> 3.18/4.0</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2><i class="fas fa-book" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Selected Publications</h2>
+                <ul>
+                    <li><i class="fas fa-file-alt" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i>Authored a seminal paper on deep learning for automated camera-trap analysis (species identification, population counting, behavior detection), published in PNAS with 1,100+ citations.</li>
+                    <li><i class="fas fa-file-alt" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i>Published a journal paper in Methods in Ecology and Evolution on automatic species identification for camera-trap images, cited 200+ times.</li>
+                    <li><i class="fas fa-file-alt" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i>Published 4 papers at Bosch Center for AI across compression, robustness, and generative AI.</li>
+                </ul>
+            </section>
+            <section>
+                <h2><i class="fas fa-trophy" style="color: var(--icon-color-1); margin-right: 0.5rem;"></i>Honors & Awards</h2>
+                <ul>
+                    <li><i class="fas fa-wand-magic-sparkles" style="color: var(--icon-color-2); margin-right: 0.5rem;"></i><strong>Research Leadership & Funding:</strong>
+                        <ul>
+                            <li>USDA NWRC Research Funding ($25k), 2018 – Funded development of 98.6%-accurate wild pig detection system.</li>
+                            <li>NSF REU Mentor Award ($5k), 2016 – Recognized mentorship of undergraduates in AI/ecology projects.</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-chart-bar" style="color: var(--icon-color-3); margin-right: 0.5rem;"></i><strong>Competitive Academic Excellence:</strong>
+                        <ul>
+                            <li>Full Ph.D. Scholarship + Stipend | University of Wyoming (2014–2019).</li>
+                            <li>Top 1% Nationwide Merit Scholarships (Iran): Master’s Degree (2007–2009) | Bachelor’s Degree (2003–2007).</li>
+                        </ul>
+                    </li>
+                    <li><i class="fas fa-people-group" style="color: var(--icon-color-4); margin-right: 0.5rem;"></i><strong>Technical Competitions:</strong>
+                        <ul>
+                            <li>ACM ICPC Asia Regional Finalist (Middle East), 2005.</li>
+                            <li>ACM ICPC Iran National Finalist, 2004.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Thank You</h2>
+                <p>© 2025 Arash Norouzzadeh. All rights reserved.</p>
             </section>
         </div>
     </div>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.0/reveal.min.js"></script>
     <script>
         Reveal.initialize({
@@ -207,6 +536,31 @@
             slideNumber: true,
             width: 960,
             height: 700
+        });
+
+        function updateProgressBar(indexh) {
+            const stages = document.querySelectorAll('.stage');
+            stages.forEach(stage => {
+                const start = parseInt(stage.dataset.start, 10);
+                const end = parseInt(stage.dataset.end, 10);
+                if (indexh >= start && indexh <= end) {
+                    stage.classList.add('active');
+                } else {
+                    stage.classList.remove('active');
+                }
+            });
+        }
+
+        Reveal.on('ready', event => updateProgressBar(event.indexh));
+        Reveal.on('slidechanged', event => updateProgressBar(event.indexh));
+
+        document.querySelectorAll('.stage').forEach(stage => {
+            stage.addEventListener('click', () => {
+                const targetIndex = parseInt(stage.dataset.start, 10);
+                if (!isNaN(targetIndex)) {
+                    Reveal.slide(targetIndex, 0);
+                }
+            });
         });
     </script>
 </body>
